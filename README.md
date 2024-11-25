@@ -1,30 +1,74 @@
-# Explication de l'Analyse en Composantes Principales (ACP)
+# PCA Analysis and Data Transformation
 
-1. **Chargement des données** :
-   - Nous avons chargé les données depuis un fichier CSV contenant des variables numériques et textuelles.
-   - Nous avons extrait les variables numériques (PAO, PAA, VIO, etc.) pour les analyses suivantes.
+This repository contains Jupyter notebooks and data files for performing PCA (Principal Component Analysis) and data transformation. The main components of this repository are:
 
-2. **Standardisation des données** :
-   - Avant d'appliquer l'ACP, nous avons standardisé les données à l'aide du `StandardScaler` de `sklearn`.
-   - La standardisation transforme les données de manière à ce que chaque variable ait une moyenne de 0 et un écart-type de 1.
-   - Cela permet d'éviter que les variables avec des plages de valeurs plus larges (comme PAO) n'influencent de manière disproportionnée le modèle.
+- `ACP_VIz.ipynb`: A notebook for performing PCA analysis and visualizing the results.
+- `Transform_Data.ipynb`: A notebook for transforming the data to match target statistics.
+- `data/`: A directory containing the data files used in the analysis.
 
-3. **Application de l'ACP** :
-   - Nous avons appliqué l'ACP (Analyse en Composantes Principales) sur les données standardisées.
-   - L'ACP permet de réduire la dimensionnalité tout en conservant l'essentiel de la variance dans les données.
+## Repository Structure
 
-4. **Calcul des valeurs propres et de la variance expliquée** :
-   - Nous avons calculé les **valeurs propres** (eigenvalues) qui indiquent l'importance de chaque composante principale.
-   - Ensuite, nous avons calculé le **pourcentage de variance expliquée** par chaque composante, ce qui nous aide à comprendre l'impact de chaque composante sur les données.
-   - Nous avons également calculé la **variance cumulée** pour voir combien de variance est expliquée par les premières composantes principales.
+```plaintext
+ACP_VIz.ipynb
+data/
+preprocessed_data/
+ACP Data.csv
+Indicators.csv
+transformed_data.csv
+README.md
+Transform_Data.ipynb
+```
 
-5. **Résultats** :
-   - Les **valeurs propres** indiquent combien de variance chaque composante principale capte.
-   - Le **pourcentage de variance** montre la proportion de variance expliquée par chaque composante.
-   - La **variance cumulée** nous permet de savoir combien de variance totale est expliquée par un certain nombre de composantes.
+## Notebooks
 
-6. **Interprétation** :
-   - Les premières composantes principales expliquent la majeure partie de la variance (plus de 77% pour la première composante).
-   - Cela montre que quelques composantes principales suffisent pour représenter une grande partie de l'information contenue dans les données.
+### `ACP_VIz.ipynb`
 
-Ces étapes permettent de réduire la complexité des données tout en conservant l'essentiel de l'information.
+This notebook performs PCA analysis on the transformed data and visualizes the results. The steps include:
+
+1. Loading and exploring the data.
+2. Calculating statistical indicators.
+3. Computing the correlation matrix.
+4. Performing PCA computation.
+5. Selecting two principal axes.
+6. Creating an individuals table.
+7. Plotting the correlation circle.
+8. Analyzing the correlation between variables and principal components.
+
+### `Transform_Data.ipynb`
+
+This notebook transforms the data to match target statistics. The steps include:
+
+1. Loading the original data and target statistics.
+2. Transforming each variable to match the target statistics.
+3. Ensuring the transformed data matches new ranges by capping to min/max values.
+4. Exporting the transformed data to a CSV file.
+
+## Data
+
+The `data/` directory contains the following files:
+
+- `preprocessed_data/ACP Data.csv`: The original data file used for PCA analysis.
+- `preprocessed_data/Indicators.csv`: The file containing statistical indicators.
+- `transformed_data.csv`: The transformed data file used in the PCA analysis.
+
+## Usage
+
+1. Open `Transform_Data.ipynb` and run all cells to transform the data and save it to `data/transformed_data.csv`.
+2. Open `ACP_VIz.ipynb` and run all cells to perform PCA analysis and visualize the results.
+
+## Requirements
+
+- Python 3.x
+- Jupyter Notebook
+- pandas
+- seaborn
+- matplotlib
+- scikit-learn
+
+## Installation
+
+To install the required packages, run:
+
+```sh
+pip install pandas seaborn matplotlib scikit-learn
+```
